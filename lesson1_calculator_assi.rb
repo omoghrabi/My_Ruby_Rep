@@ -4,13 +4,10 @@ while status != "s" do
 
   first_number = gets.chomp
 
-  while !first_number == first_number.to_i.to_s || first_number.to_f.to_s do
+  while kind_of? (first_number) != interger || first_number) == float do
     puts "your input is not an interger nor a float"
-    
     puts "please input your 1st number"
-
     first_number = gets.chomp!
-
   end
 
   puts "please select an operation number from the following list
@@ -22,30 +19,23 @@ while status != "s" do
   operation = gets.chomp
 
   while !["1","2","3","4"].include? (operation) do
-
     puts "Your input is not valid" 
-
     puts "please select an operation number from the following list
           1) Add
           2) Subtract
           3) Multiply
           4) Divide"
     operation = gets.chomp
-
   end
 
   puts "please input your 2nd number"
   
   second_number = gets.chomp.to_f
   
-  while !first_number == second_number.to_i.to_s || second_number.to_f.to_s do
-
+  while second_number.is_a? == integer || second_number.is_a? == float do
     puts "your input is not an interger nor a float"
-    
     puts "please input your 2nd number"
-
     first_number = gets.chomp!
-
   end
 
   case operation
