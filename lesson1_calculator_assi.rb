@@ -4,7 +4,7 @@ while status != "s" do
 
   first_number = gets.chomp
 
-  while kind_of? (first_number) != interger || first_number) == float do
+  while  first_number.to_f.to_s != first_number && first_number.to_i.to_s != first_number do
     puts "your input is not an interger nor a float"
     puts "please input your 1st number"
     first_number = gets.chomp!
@@ -30,33 +30,33 @@ while status != "s" do
 
   puts "please input your 2nd number"
   
-  second_number = gets.chomp.to_f
+  second_number = gets.chomp
   
-  while second_number.is_a? == integer || second_number.is_a? == float do
+  while second_number.to_f.to_s != second_number && second_number.to_i.to_s != second_number do
     puts "your input is not an interger nor a float"
     puts "please input your 2nd number"
-    first_number = gets.chomp!
+    second_number = gets.chomp!
   end
 
   case operation
 
   when "1"
 
-    puts "the sum of #{first_number} and #{second_number} is #{first_number + second_number}"
+    puts "the sum of #{first_number} and #{second_number} is #{first_number.to_f + second_number.to_f}"
 
   when "2"
 
-    puts "the subtraction of #{second_number} from #{first_number} is #{first_number - second_number}"
+    puts "the subtraction of #{second_number} from #{first_number} is #{first_number.to_f - second_number.to_f}"
 
   when "3"
 
-    puts "the multiplication of #{first_number} by #{second_number} is #{first_number * second_number}"
+    puts "the multiplication of #{first_number} by #{second_number} is #{first_number.to_f * second_number.to_f}"
 
   when "4"
     if second_number == 0
       puts "Error: can not divide by zero"
     else
-      puts "the division of #{first_number} by #{second_number} is #{first_number / second_number}"
+      puts "the division of #{first_number} by #{second_number} is #{first_number.to_f / second_number.to_f}"
     end 
 
   end 
