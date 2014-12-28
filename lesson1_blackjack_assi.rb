@@ -32,9 +32,9 @@ begin
     puts "Do you want to Hit or Stay"
     player_choice = gets.chomp.downcase
 
-    while player_choice != "hit" || "stay"
+    while player_choice != "hit" && player_choice != "stay"
       puts "your input is not valid, please select either hit or stay"
-      player_choice = gets.chomp.downcase!
+      player_choice = gets.chomp.downcase
     end 
 
     if player_choice == "hit"
@@ -71,6 +71,8 @@ begin
     puts "you lost!"
   elsif player_cards_sum < dealer_cards_sum && dealer_cards_sum > 21
     puts "you Won!"
+  elsif player_cards_sum == dealer_cards_sum
+    puts "Tie"
   end 
 
   puts "Do you want to play again (Y/N)"
