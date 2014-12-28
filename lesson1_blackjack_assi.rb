@@ -5,22 +5,27 @@ card_deck = {1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10,"Jack"=>10,"Que
 begin 
   player_hand = []
   dealer_hand = []
+
   #palyer initial two cards 
   player_first_card = card_deck.keys.sample
   player_hand << player_first_card
   player_second_card = card_deck.keys.sample
   player_hand << player_second_card
+
   puts "your first two cards are #{player_hand}"
   player_cards_sum = card_deck[player_first_card] + card_deck[player_second_card]
   puts "your total is #{player_cards_sum}"
+
   #dealer initial two cards
   dealer_first_card = card_deck.keys.sample
   dealer_hand << dealer_first_card
   dealer_second_card = card_deck.keys.sample
   dealer_hand << dealer_second_card
+
   puts "dealer first two cards are #{dealer_hand}"
   dealer_cards_sum = card_deck[dealer_first_card] + card_deck[dealer_second_card]
   puts "dealer total is #{dealer_cards_sum}"
+
   #player choice "hit" or "stay" and card output 
   player_choice = "hit"
   while player_cards_sum < 21 && player_choice == "hit" 
@@ -49,6 +54,7 @@ begin
     dealer_hit_card = card_deck.keys.sample()
     dealer_hand << dealer_hit_card
     dealer_cards_sum = dealer_cards_sum + card_deck[dealer_hit_card]
+    
     puts "dealers hand is #{dealer_hand}"
     puts "dealer total is #{dealer_cards_sum}"
   end
