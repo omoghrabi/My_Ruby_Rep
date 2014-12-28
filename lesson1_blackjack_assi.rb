@@ -32,9 +32,9 @@ begin
     puts "Do you want to Hit or Stay"
     player_choice = gets.chomp.downcase
 
-    unless player_choice == "hit" || "stay" 
+    while player_choice != "hit" || "stay"
       puts "your input is not valid, please select either hit or stay"
-      player_choice = gets.chomp!
+      player_choice = gets.chomp.downcase!
     end 
 
     if player_choice == "hit"
@@ -43,7 +43,7 @@ begin
       player_cards_sum = player_cards_sum + card_deck[player_hit_card]
     end 
 
-    if player_cards_sum > 21 && player_hand.include? ("Ace")
+    if player_cards_sum > 21 && player_hand.include?("Ace")
       player_cards_sum = player_cards_sum - 10 
     end
     puts "your hand is #{player_hand}"
@@ -51,10 +51,10 @@ begin
   end 
   #dealer card output
   while dealer_cards_sum < 17 
-    dealer_hit_card = card_deck.keys.sample()
+    dealer_hit_card = card_deck.keys.sample
     dealer_hand << dealer_hit_card
     dealer_cards_sum = dealer_cards_sum + card_deck[dealer_hit_card]
-    
+
     puts "dealers hand is #{dealer_hand}"
     puts "dealer total is #{dealer_cards_sum}"
   end
