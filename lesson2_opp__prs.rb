@@ -15,6 +15,7 @@ class Players
       R => Rock
       S => Scissors"
     @selection = gets.chomp.upcase 
+    @selection = check(@selection)
     return paper_rock_scissors(@selection)
   end 
 
@@ -25,11 +26,19 @@ class Players
   def paper_rock_scissors(sel)
     prs = {"P"=>"Paper", "R"=>"Rock", "S"=>"Scissors"}
     if sel != "random"
-      return prs[selection]
+      return prs[sel]
     else 
       return prs[prs.keys.sample]
     end 
   end 
+
+  def check(input)
+    while !["P","R","S"].include?(input)
+      puts "please enter a valid input"
+      input = gets.chomp.upcase 
+    end 
+    return input
+  end
 
   def compare (selection_one,selection_two)
     if selection_two == "Rock" && selection_one == "Rock"
