@@ -34,6 +34,9 @@ class Player
       card = card_selection
       self.player_hand << card
       self.player_total_value = player_total_value + card_value(card)
+      if player_total_value > 21 && player_hand.include?("Ace")
+        ace_correction
+      end
       puts "your hand is #{player_hand}"
       puts "your hands valus = #{player_total_value}"
       if player_total_value > 21 
@@ -46,7 +49,19 @@ class Player
   def player_selection
     puts "please select hit or stay"
     self.selection = gets.chomp.downcase
+    check_player_selection
   end 
+
+  def check_player_selection 
+    while selection != "hit" && selection != "stay"
+      puts "Invalid input, please select hit or stay"
+      self.selection = gets.chomp.downcase 
+    end
+  end 
+
+  def ace_correction
+    self.player_total_value = player_total_value - 10
+  end   
 end 
 
 
@@ -64,7 +79,7 @@ class Dealer
   end 
 
   def value
-    dealer_hand.select{|x| self.dealer_total_value = dealer_total_value + card_value(x)}
+    dealer_hand.select{|each_card| self.dealer_total_value = dealer_total_value + card_value(each_card)}
     "Dealers's hand value is #{dealer_total_value}"
   end 
 
@@ -73,16 +88,23 @@ class Dealer
       card = card_selection
       self.dealer_hand << card
       self.dealer_total_value = dealer_total_value + card_value(card)
+      if dealer_total_value > 21 && dealer_hand.include?("Ace")
+        ace_correction
+      end
       puts "Dealr's hand is #{dealer_hand}"
       puts "Dealers hands valus = #{dealer_total_value}"
     end 
   end 
+
+  def ace_correction
+    self.dealer_total_value = dealer_total_value - 10
+  end  
 end 
 
 class BlackJack 
-  include Cards 
-
+  include Cards  
   def start
+    begin 
     puts "Please enter your name"
     player_name = gets.chomp
     player_one = Player.new(player_name)
@@ -94,11 +116,15 @@ class BlackJack
     player_one.player_selection
     player_one.player_hit_card
     dealer.dealer_hit_card
-    compare
+    compare(player_one.player_total_value,dealer.dealer_total_value)
+    play_again = "Y"
+    puts "Do you want to play again (Y/N)?"
+    play_again = gets.chomp.upcase
+    end while play_again == "Y"
   end 
 
-  def compare
-    if player_one.player_total_value == 21 && dealer.dealer_total_value != 21 
+  def compare(player_total_value,dealer_total_value)
+    if player_total_value == 21 && dealer_total_value != 21 
       puts "Blackjack, you won!"
     elsif player_total_value == 21 && dealer_total_value == 21 
       puts "Tie"
